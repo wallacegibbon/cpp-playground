@@ -3,7 +3,7 @@
 template <typename T>
 class MySmartPointer {
 public:
-    MySmartPointer(T *ptr_ = nullptr) : ptr(ptr_) {}
+    MySmartPointer(T *ptr = nullptr) : ptr_(ptr) {}
     virtual ~MySmartPointer();
 
     MySmartPointer(const MySmartPointer &ptr) = delete;
@@ -12,38 +12,38 @@ public:
     MySmartPointer &operator=(const MySmartPointer &ptr) = delete;
     MySmartPointer &operator=(MySmartPointer &&ptr) noexcept;
 
-    T operator*() const { return *ptr; }
-    T *operator->() const { return ptr; }
+    T operator*() const { return *ptr_; }
+    T *operator->() const { return ptr_; }
 
-    T *get_ptr() const { return ptr; }
-    void set_ptr(T *newptr) { ptr = newptr; }
+    T *get_ptr() const { return ptr_; }
+    void set_ptr(T *newptr) { ptr_ = newptr; }
 
 private:
-    T *ptr;
+    T *ptr_;
 };
 
 template <typename T>
 MySmartPointer<T>::~MySmartPointer() {
-    if (ptr != nullptr) {
-        delete ptr;
-        ptr = nullptr;
+    if (ptr_ != nullptr) {
+        delete ptr_;
+        ptr_ = nullptr;
     }
 }
 
 template <typename T>
-MySmartPointer<T>::MySmartPointer(MySmartPointer &&ptr_) noexcept {
-    ptr = ptr_.get_ptr();
-    ptr_.set_ptr(nullptr);
+MySmartPointer<T>::MySmartPointer(MySmartPointer &&ptr) noexcept {
+    ptr_ = ptr.get_ptr();
+    ptr.set_ptr(nullptr);
 }
 
 template <typename T>
-MySmartPointer<T> &MySmartPointer<T>::operator=(MySmartPointer &&ptr_) noexcept {
-    if (this == &ptr_) {
+MySmartPointer<T> &MySmartPointer<T>::operator=(MySmartPointer &&ptr) noexcept {
+    if (this == &ptr) {
         return *this;
     }
-    delete ptr;
-    ptr = ptr_.get_ptr();
-    ptr_.set_ptr(nullptr);
+    delete ptr_;
+    ptr_ = ptr.get_ptr();
+    ptr.set_ptr(nullptr);
     return *this;
 }
 
