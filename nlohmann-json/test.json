@@ -1,0 +1,10 @@
+{
+    "name": "wallace2",
+    "gender": "male",
+    "languages:": [
+        "c",
+        "c++",
+        "erlang",
+        "javascript"
+    ]
+}
