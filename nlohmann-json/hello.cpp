@@ -13,7 +13,7 @@ int main(int argc, const char **argv) {
     std::cout << j1.dump() << std::endl;
 
     std::cout << "==== print beautified JSON object ====" << std::endl;
-    /* std::setw will make the print indented (even if there are only one element inside the JSON) */
+    /// std::setw will make the print indented (even if there are only one element inside the JSON)
     std::cout << std::setw(4) << j1 << std::endl;
 
     std::cout << "==== getting a value ====" << std::endl;
@@ -29,15 +29,14 @@ int main(int argc, const char **argv) {
     j1["languages"][2] = "erlang";
     std::cout << j1 << std::endl;
 
-    /* you can also directly set field even if it's parent does not exist.
-     * (they will be created automaticlly, just like `mkdir -p`)
-     */
+    /// you can also directly set field even if it's parent does not exist.
+    /// (they will be created automaticlly, just like `mkdir -p`)
     j1["languages"][4]["name"]["type"] = "cool";
     j1["languages"][5][1][2] = "cool";
     std::cout << j1 << std::endl;
 
     std::cout << "==== getting JSON from file ====" << std::endl;
-    /* make sure you are in the cpp-playground directory, or the file path is wrong */
+    /// make sure you are in the cpp-playground directory, or the file path is wrong
     std::ifstream json_file("./nlohmann-json/test.json");
     json_file >> j1;
     std::cout << j1 << std::endl;

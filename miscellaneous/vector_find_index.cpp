@@ -3,7 +3,7 @@
 #include <tuple>
 #include <vector>
 
-// argument "element" is const (left-value) reference to support both left-value and right-value
+/// argument "element" is const (left-value) reference to support both left-value and right-value
 template <typename T>
 int find_index(std::vector<T> container, const T &element) {
     int index = std::find(container.begin(), container.end(), element) - container.begin();

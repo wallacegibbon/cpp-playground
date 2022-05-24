@@ -2,7 +2,7 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
-/* this will reset the seekg of the stream */
+/// this will reset the seekg of the stream
 int size_of_ifstream(std::ifstream &stream) {
     int begin = stream.tellg();
     stream.seekg(0, std::ifstream::end);
@@ -19,7 +19,7 @@ int main(int argc, const char **argv) {
     std::ofstream output(tmpfile);
     output.write(reinterpret_cast<char *>(v_bson.data()), v_bson.size());
 
-    /* if you don't close(or flush) the ostream, the content will not be written to disk */
+    /// if you don't close(or flush) the ostream, the content will not be written to disk
     output.close();
 
     std::ifstream input(tmpfile, std::ifstream::binary);

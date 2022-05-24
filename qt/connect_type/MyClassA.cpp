@@ -2,9 +2,8 @@
 #include <iostream>
 
 /// The default Qt::ConnectionType value is Qt::AutoConnection.
-
-/// If the receiver lives in the same thread that emits the signal, Qt::DirectConnection is used.
-/// Otherwise, Qt::QueuedConnection is used.
+/// Under Qt::AutoConnection, if the receiver lives in the same thread that emits the signal,
+/// Qt::DirectConnection is used. Otherwise, Qt::QueuedConnection is used.
 
 /// when Qt::DirectConnection is being used, the target slot is invoked immediately when the signal
 /// is emitted. (the solt is executed in the signalling thread)

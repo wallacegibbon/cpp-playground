@@ -59,10 +59,9 @@ private:
 };
 
 int main(int argc, const char **argv) {
-    /*
-     * if the object is not allocated with `new`, there will be runtime error like
-     * (double free or corruption (out))
-     */
+    /// if the object is not allocated with `new`, there will be runtime error like
+    /// (double free or corruption (out))
+
     // MyDataClass data("wallace", 30);
     // MySmartPointer<MyDataClass> p1(&data);
 
@@ -73,9 +72,9 @@ int main(int argc, const char **argv) {
     std::cout << "p1 is now " << p1.get_ptr() << std::endl;
 
     // MySmartPointer<MyDataClass> p2(p1);
-    //>>  error: use of deleted function ‘MySmartPointer<T>::MySmartPointer(const MySmartPointer<T>&)
+    ///>  error: use of deleted function ‘MySmartPointer<T>::MySmartPointer(const MySmartPointer<T>&)
 
-    /* std::move convert a value to an rvalue */
+    /// std::move convert a value to an rvalue
     MySmartPointer<MyDataClass> p2(std::move(p1));
 
     std::cout << "p1 is now " << p1.get_ptr() << std::endl;

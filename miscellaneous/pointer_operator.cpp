@@ -24,10 +24,10 @@ int main(int argc, const char **argv) {
     MyDataClass data("wallace", 30);
 
     MyPointer<MyDataClass> p1(&data);
-    /* `p1->info()` is just like `(p1->operator->())->info()` */
+    /// `p1->info()` is just like `(p1->operator->())->info()`
     std::cout << p1->info() << std::endl;
 
-    /* this doesn't work */
+    /// this doesn't work
     // MyPointer<MyPointer<MyDataClass>> p2(&p1);
     // std::cout << p2->info() << std::endl;
 
