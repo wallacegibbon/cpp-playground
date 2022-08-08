@@ -12,9 +12,13 @@
 /// the event loop of the receiver's thread. (they could be the same thread, too)
 
 MyClassA::MyClassA() {
-    connect(this, &MyClassA::signal1, this, &MyClassA::slot1);
-    connect(this, &MyClassA::signal1, this, &MyClassA::slot2, Qt::DirectConnection);
-    connect(this, &MyClassA::signal1, this, &MyClassA::slot3, Qt::QueuedConnection);
+	connect(this, &MyClassA::signal1, this, &MyClassA::slot1);
+
+	connect(this, &MyClassA::signal1, this, &MyClassA::slot2,
+		Qt::DirectConnection);
+
+	connect(this, &MyClassA::signal1, this, &MyClassA::slot3,
+		Qt::QueuedConnection);
 }
 
 /// the output of test method is like this:
@@ -24,7 +28,7 @@ MyClassA::MyClassA() {
 ///     after invoking `emit blah.signal1()`
 ///     this is message from slot3
 void MyClassA::test() {
-    std::cout << "before invoking `emit blah.signal1()`" << std::endl;
-    emit signal1();
-    std::cout << "after invoking `emit blah.signal1()`" << std::endl;
+	std::cout << "before invoking `emit blah.signal1()`" << std::endl;
+	emit signal1();
+	std::cout << "after invoking `emit blah.signal1()`" << std::endl;
 }

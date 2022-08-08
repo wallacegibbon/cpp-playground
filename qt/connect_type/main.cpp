@@ -4,10 +4,10 @@
 #include <iostream>
 
 int main(int argc, const char **argv) {
-    QApplication app(argc, const_cast<char **>(argv));
+	QApplication app(argc, const_cast<char **>(argv));
 
-    MyClassA blah;
-    blah.test();
+	MyClassA blah;
+	blah.test();
 
-    return app.exec();
+	return app.exec();
 }
