@@ -6,26 +6,28 @@
 namespace sorter {
 
 template <typename T>
-inline void swap(T *a, T *b) { T tmp = *a; *a = *b; *b = tmp; }
+inline void swap(T &a, T &b) { T tmp = a; a = b; b = tmp; }
 
 template <typename T>
 void bubble_sort(T arr[], int size, std::function<bool (T&, T&)> cmp) {
 	for (int i = 0; i < size - 1; i++)
 		for (int j = 0, k = 1; j < size - i - 1; j++, k++)
 			if (!cmp(arr[j], arr[k]))
-				swap(&arr[j], &arr[k]);
+				swap(arr[j], arr[k]);
 }
 
+/// selection_sort do less swap than bubble_sort.
 template <typename T>
 void selection_sort(T arr[], int size, std::function<bool (T&, T&)> cmp) {
 	for (int i = 0; i < size - 1; i++) {
 		int k = i;
-		for (int j = i + 1; j < size; j++)
+		for (int j = i + 1; j < size; j++) {
 			if (!cmp(arr[k], arr[j]))
 				k = j;
+		}
 
 		if (k != i)
-			swap(&arr[i], &arr[k]);
+			swap(arr[i], arr[k]);
 	}
 }
 
@@ -138,11 +140,11 @@ int __divide(T arr[], int start, int end, std::function<bool (T&, T&)> cmp) {
 			right--;
 
 		if (left != right)
-			swap(&arr[left], &arr[right]);
+			swap(arr[left], arr[right]);
 	}
 
 	if (!cmp(arr[left], mid))
-		swap(&arr[left], &arr[end - 1]);
+		swap(arr[left], arr[end - 1]);
 
 	return left + 1;
 }
@@ -238,7 +240,7 @@ void heap_sort(T arr[], int size, std::function<bool (T&, T&)> cmp) {
 		heap_adjust(arr, size, i, cmp);
 
 	for (int i = size - 1; i > 0; i--) {
-		swap(&arr[0], &arr[i]);
+		swap(arr[0], arr[i]);
 		heap_adjust(arr, i, 0, cmp);
 	}
 }
