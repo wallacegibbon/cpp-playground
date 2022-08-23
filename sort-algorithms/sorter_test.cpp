@@ -7,7 +7,7 @@ using namespace sorter;
 
 class Person {
 public:
-	enum Gender { UNKNOWN = 0, MALE, FEMALE };
+	enum Gender { UNKNOWN, MALE, FEMALE };
 	Person(const char *name, int age, Gender gender) :
 		name(name), age(age), gender(gender) {}
 
